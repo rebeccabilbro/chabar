@@ -1,0 +1,50 @@
+{
+  "categorical_features": {
+    "Type": [
+      "Watermill", 
+      "Vermetid Core", 
+      "Well", 
+      "Channel", 
+      "Structure Base", 
+      "Beachrock", 
+      "Pool"
+    ], 
+    "Location": [
+      "Taninim", 
+      "Atlit", 
+      "Dor", 
+      "Shiqmona", 
+      "Achziv", 
+      "Habonim  ", 
+      "Jaffa", 
+      "Haazrot Yaasaf", 
+      "Akko", 
+      "Caesarea", 
+      "Sedot Yam", 
+      "Ashquelon", 
+      "Michmoret", 
+      "Yavne Yam"
+    ]
+  }, 
+  "feature_names": [
+    "Location", 
+    "Type", 
+    "Date_BP", 
+    "Date_error", 
+    "RSL", 
+    "RSL_error", 
+    "RSL_min", 
+    "RSL_min_error", 
+    "RSL_max", 
+    "RSL_max_error"
+  ], 
+  "target_names": [
+    "Watermill", 
+    "Vermetid Core", 
+    "Well", 
+    "Channel", 
+    "Structure Base", 
+    "Beachrock", 
+    "Pool"
+  ]
+}
