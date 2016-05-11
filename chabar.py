@@ -14,8 +14,9 @@ import pandas as pd
 from sklearn.pipeline import Pipeline
 from sklearn.datasets.base import Bunch
 from sklearn.preprocessing import LabelEncoder
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, r2_score, mean_squared_error as mse
 from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVR
 from sklearn.base import BaseEstimator, TransformerMixin
 
 
@@ -61,6 +62,8 @@ def load_data(root='data'):
 
     # Remove the target, name, and citation from the categorical features
     meta['categorical_features'].pop('Type')
+
+    # print dataset['Type']
 
     # Return the bunch with the appropriate data chunked apart
     return Bunch(
@@ -128,7 +131,8 @@ if __name__ == '__main__':
     # Construct the pipeline
     sealevel = Pipeline([
             ('encoder',  EncodeCategorical(israel.categorical_features.keys())),
-            ('classifier', LogisticRegression())
+            # ('classifier', LogisticRegression())
+            ('regressor', SVR())
         ])
 
     # Fit the pipeline
@@ -139,7 +143,10 @@ if __name__ == '__main__':
     y_pred = sealevel.predict(israel.data)
 
     # execute classification report
-    print classification_report(y_true, y_pred, target_names=israel.target_names)
+    # print classification_report(y_true, y_pred, target_names=israel.target_names)
 
+    # execute regression evaluators mse and coefficient of determination
+    print "The mean squared error is: %s. " % mse(y_true,y_pred)
+    print "The coefficient of determination is: %s. " % r2_score(y_true,y_pred)
     # Pickle the model for future use
-    dump_model(sealevel)
+    dump_model(sealevel, name='regressor.pickle')
